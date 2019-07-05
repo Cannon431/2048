@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>2048</title>
+	<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+	<div id="game">
+		<ul class="menu top-menu">
+			<li>Higher score: <span id="higher-score">0</span></li>
+			<li>Score: <span id="score">0</span></li>
+			<li id="undo" class="button">Undo</li>
+		</ul>
+		<canvas id="canvas" width=450 height=450></canvas>
+		<ul class="menu bottom-menu">
+			<li id="continue" class="button">Continue</li>
+			<li id="close" class="button">Close</li>
+			<li id="new-game" class="button">New game</li>
+		</ul>
+	</div>
+	<script src="./js/script.js" type="module"></script>
+</body>
+</html>

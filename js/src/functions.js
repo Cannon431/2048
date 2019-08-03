@@ -45,3 +45,7 @@ export function new2dArray(rows) {
 
     return newArray;
 }
+
+export function firstToUpper(string) {
+    return string[0].toUpperCase() + string.slice(1);
+}

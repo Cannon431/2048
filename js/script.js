@@ -28,7 +28,28 @@ function render() {
 }
 
 function move(keyCode) {
-    let [tilesMoved, gotScore] = field.moveTiles(keyCode);
+    if ([37, 65, 38, 87, 39, 68, 40, 83].indexOf(keyCode) === -1) return [false, 0];
+    let direction = '';
+
+    switch (keyCode) {
+            case 37:
+            case 65:
+                direction = 'left';
+                break;
+            case 38:
+            case 87:
+                direction = 'up';
+                break;
+            case 39:
+            case 68:
+                direction = 'right';
+                break;
+            case 40:
+            case 83:
+                direction = 'down';
+        }
+
+    let [tilesMoved, gotScore] = field.moveTiles(direction);
 
     if (!tilesMoved) return;
 

@@ -1,8 +1,8 @@
 import Tile from './tile.js';
-import {random, arrayIsEmpty, foreach2dArray, arrayOr, new2dArray} from './functions.js';
+import {random, arrayIsEmpty, foreach2dArray, arrayOr, new2dArray, firstToUpper} from './functions.js';
 
 export default class Field {
-    constructor(rows = 4, cols = 4) {
+    constructor(rows, cols) {
         this.cols = cols;
         this.rows = rows;
     }
@@ -58,8 +58,10 @@ export default class Field {
         return true;
     }
 
-    moveTiles(key) {
-        if ([37, 65, 38, 87, 39, 68, 40, 83].indexOf(key) === -1) return [false, 0];
+    moveTiles(direction) {
+        if (['left', 'up', 'right', 'down'].indexOf(direction.toLowerCase()) === -1) {
+            throw new Error('Unknown direction ' + direction);
+        }
 
         foreach2dArray(this.tiles, (row, col) => {
             if (this.tiles[row][col] !== null) {
@@ -71,26 +73,9 @@ export default class Field {
         foreach2dArray(this.previousTiles, (row, col) => tilesCopy[row][col] = this.previousTiles[row][col]);
         foreach2dArray(this.tiles, (row, col) => this.previousTiles[row][col] = this.tiles[row][col]);
         
-        let gotScore = 0, tilesMoved = false;
-
-        switch (key) {
-            case 37:
-            case 65:
-                [tilesMoved, gotScore] = this.moveTilesLeft();
-                break;
-            case 38:
-            case 87:
-                [tilesMoved, gotScore] = this.moveTilesUp();
-                break;
-            case 39:
-            case 68:
-                [tilesMoved, gotScore] = this.moveTilesRight();
-                break;
-            case 40:
-            case 83:
-                [tilesMoved, gotScore] = this.moveTilesDown();
-        }
-
+        let movingFunctionName = 'moveTiles' + firstToUpper(direction)
+        let [tilesMoved, gotScore] = this[movingFunctionName]();
+                
         if (!tilesMoved) {
             foreach2dArray(tilesCopy, (row, col) => this.previousTiles[row][col] = tilesCopy[row][col]);
         }

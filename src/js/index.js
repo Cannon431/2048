@@ -1,7 +1,7 @@
-import Canvas from './src/canvas.js';
-import Field from './src/field.js';
-import View from './src/view.js';
-import Game from './src/game.js';
+import Canvas from './classes/Canvas';
+import Field from './classes/Field';
+import View from './classes/View';
+import Game from './classes/Game';
 
 const rows = 4,
     cols = 4;

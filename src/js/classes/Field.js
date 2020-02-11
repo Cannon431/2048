@@ -1,5 +1,5 @@
-import Tile from './tile.js';
-import {random, arrayIsEmpty, foreach2dArray, arrayOr, new2dArray, firstToUpper} from './functions.js';
+import Tile from './Tile';
+import { random, arrayIsEmpty, foreach2dArray, arrayOr, new2dArray, firstToUpper } from '../functions';
 
 export default class Field {
     constructor(rows, cols) {
